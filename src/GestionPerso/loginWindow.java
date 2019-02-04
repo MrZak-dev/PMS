@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package GestionPerso;
-
+import java.sql.*;
 /**
  *
  * @author mrwho
@@ -12,10 +12,10 @@ package GestionPerso;
 
 //Good
 public class loginWindow extends javax.swing.JFrame {
-
-    /**
-     * Creates new form loginWindow
-     */
+    //connection variables 
+    private static final String USERNAME="MrWho";
+    private static final String PASSWORD="MrWho618069";
+    private static final String CONN_STRING="jdbc:mysql://localhost:3306/personalMGMT";
     public loginWindow() {
         initComponents();
     }
@@ -135,10 +135,25 @@ public class loginWindow extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
+        
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+        
+        
+        //Mysql Connection 
+        Connection myconn = null;
+        try {
+            myconn = DriverManager.getConnection(CONN_STRING,USERNAME,PASSWORD);
+            System.out.println("Connected");
+        }catch(SQLException e){
+            System.err.println(e);
+        }
+        
+        //MysqlConnection end
+        
+        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -155,7 +170,7 @@ public class loginWindow extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(loginWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
+        //</editor-fold
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
