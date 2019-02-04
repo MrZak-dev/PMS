@@ -12,12 +12,26 @@ import java.sql.*;
 
 //Good
 public class loginWindow extends javax.swing.JFrame {
+    
+    // sqlQuery  insert into Fonctions(FonctionId,FonctionNom) values (1,'Directeur');
     //connection variables 
+    private Connection myconn = null;
     private static final String USERNAME="MrWho";
     private static final String PASSWORD="MrWho618069";
     private static final String CONN_STRING="jdbc:mysql://localhost:3306/personalMGMT";
     public loginWindow() {
         initComponents();
+         //Mysql Connection 
+        
+        try {
+            myconn = DriverManager.getConnection(CONN_STRING,USERNAME,PASSWORD);
+            System.out.println("Connected");
+        }catch(SQLException e){
+            System.err.println(e);
+        }
+        
+        //MysqlConnection end
+        
     }
 
     /**
@@ -68,7 +82,7 @@ public class loginWindow extends javax.swing.JFrame {
 
         jPasswordField1.setBackground(new java.awt.Color(250, 200, 120));
         jPasswordField1.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
-        jPasswordField1.setText("ttt");
+        jPasswordField1.setText("zakzak");
         jPasswordField1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 3, 0, new java.awt.Color(120, 170, 250)));
         jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,7 +137,31 @@ public class loginWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        String userPassword = jPasswordField1.getText(); //geting password 
+        String userName = jTextField1.getText();
+        try{
+            //Statement myStatement = (Statement) myconn.createStatement();
+            
+            String select = "Select UserPassword from Employes where UserName=?";
+            PreparedStatement prSt = myconn.prepareStatement(select);
+            prSt.setString(1,userName);
+            ResultSet myResults =  prSt.executeQuery();
+            while(myResults.next()){
+                if(userPassword.equals(myResults.getString("userPassword"))){
+                    System.out.print("Welcome"); 
+                    new menuWindow().setVisible(true);
+                    this.setVisible(false);
+                    
+                }else{
+                    System.out.print("Fuck off");
+                    // here replqce it with qn error system message
+                }
+                
+            }
+        }catch(SQLException e){
+            System.err.print(e);
+        }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -141,17 +179,7 @@ public class loginWindow extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         
-        
-        //Mysql Connection 
-        Connection myconn = null;
-        try {
-            myconn = DriverManager.getConnection(CONN_STRING,USERNAME,PASSWORD);
-            System.out.println("Connected");
-        }catch(SQLException e){
-            System.err.println(e);
-        }
-        
-        //MysqlConnection end
+       
         
         
         try {
