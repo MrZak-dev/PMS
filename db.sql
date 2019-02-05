@@ -14,8 +14,6 @@ Create TABLE Employes(
     Prenom varchar(25),
     DateNai DATE,
     DateEmb DATE,
-    UserName varchar(25),
-    UserPassword varchar(25),
     FonctionId int(10),
     ServiceId int(10),
     CongeId int(10),
@@ -36,5 +34,14 @@ CREATE TABLE Salaires(
     Montant float,
     EmployeId int(10),
     CONSTRAINT sal_emp FOREIGN KEY (EmployeId) REFERENCES Employes(EmployeId)
+);
+
+/**** Separated table ***/
+
+CREATE TABLE Admins(
+    AdminId INT(10) PRIMARY KEY AUTO_INCREMENT,
+    AdminFullName varchar(25),
+    AdminUserName VARCHAR(25),
+    AdminPassword VARCHAR(25)
 );
 

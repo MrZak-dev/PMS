@@ -5,6 +5,7 @@
  */
 package GestionPerso;
 import java.sql.*;
+import javax.swing.JOptionPane;
 /**
  *
  * @author mrwho
@@ -22,16 +23,13 @@ public class loginWindow extends javax.swing.JFrame {
     public loginWindow() {
         initComponents();
          //Mysql Connection 
-        
         try {
             myconn = DriverManager.getConnection(CONN_STRING,USERNAME,PASSWORD);
             System.out.println("Connected");
         }catch(SQLException e){
             System.err.println(e);
         }
-        
         //MysqlConnection end
-        
     }
 
     /**
@@ -142,21 +140,23 @@ public class loginWindow extends javax.swing.JFrame {
         try{
             //Statement myStatement = (Statement) myconn.createStatement();
             
-            String select = "Select UserPassword from Employes where UserName=?";
-            PreparedStatement prSt = myconn.prepareStatement(select);
-            prSt.setString(1,userName);
-            ResultSet myResults =  prSt.executeQuery();
+            String select = "Select AdminPassword from Admins where AdminUserName=?";
+            PreparedStatement myPrSt = myconn.prepareStatement(select);
+            myPrSt.setString(1,userName);
+            ResultSet myResults =  myPrSt.executeQuery();
             while(myResults.next()){
-                if(userPassword.equals(myResults.getString("userPassword"))){
+                if(userPassword.equals(myResults.getString("AdminPassword"))){
                     System.out.print("Welcome"); 
                     new menuWindow().setVisible(true);
                     this.setVisible(false);
-                    
                 }else{
-                    System.out.print("Fuck off");
-                    // here replqce it with qn error system message
+                    //if the username is correct but password is not
+                    JOptionPane.showMessageDialog(rootPane, "les donnees sont incorrect", "login error", JOptionPane.ERROR_MESSAGE);
                 }
-                
+            }
+            if(!myResults.first()){
+                //if there is no data show error message
+                JOptionPane.showMessageDialog(rootPane, "les donnees sont incorrect", "login error", JOptionPane.ERROR_MESSAGE);
             }
         }catch(SQLException e){
             System.err.print(e);
@@ -172,16 +172,6 @@ public class loginWindow extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        
-       
-        
-        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
