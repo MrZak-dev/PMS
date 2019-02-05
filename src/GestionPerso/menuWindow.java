@@ -98,7 +98,7 @@ public class menuWindow extends javax.swing.JFrame {
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 190, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Noto Sans", 1, 14)); // NOI18N
-        jLabel3.setText("Gestion Des Fonctions");
+        jLabel3.setText("Fonctions Et Services");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 190, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Noto Sans", 1, 14)); // NOI18N

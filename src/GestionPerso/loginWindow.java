@@ -13,8 +13,6 @@ import javax.swing.JOptionPane;
 
 //Good
 public class loginWindow extends javax.swing.JFrame {
-    
-    // sqlQuery  insert into Fonctions(FonctionId,FonctionNom) values (1,'Directeur');
     //connection variables 
     private Connection myconn = null;
     private static final String USERNAME="MrWho";
@@ -138,10 +136,9 @@ public class loginWindow extends javax.swing.JFrame {
         String userPassword = jPasswordField1.getText(); //geting password 
         String userName = jTextField1.getText();
         try{
-            //Statement myStatement = (Statement) myconn.createStatement();
-            
-            String select = "Select AdminPassword from Admins where AdminUserName=?";
-            PreparedStatement myPrSt = myconn.prepareStatement(select);
+            //Sql Query
+            String sqlQuery = "Select AdminPassword from Admins where AdminUserName=?";
+            PreparedStatement myPrSt = myconn.prepareStatement(sqlQuery);
             myPrSt.setString(1,userName);
             ResultSet myResults =  myPrSt.executeQuery();
             while(myResults.next()){
