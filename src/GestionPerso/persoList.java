@@ -43,8 +43,8 @@ public class persoList extends javax.swing.JFrame {
         
         //Default listing
         try{
-            String sqlQuery = "Select Nom , Prenom , DateNai , DateEmb, FonctionNom , ServiceNom From Employes , Fonctions , Services"
-                    + " Where Employes.ServiceId = Services.ServiceId And Employes.FonctionId = Fonctions.FonctionId;";
+            String sqlQuery = "Select Nom , Prenom , DateNai , DateEmb, FonctionNom , ServiceNom , Montant From Employes E , Fonctions , Services , Salaires Sal"
+                    + " Where E.ServiceId = Services.ServiceId And Sal.EmployeId = E.EmployeId And E.FonctionId = Fonctions.FonctionId;";
             PreparedStatement myStatement = myconn.prepareStatement(sqlQuery);
             fillEmployeesList(myStatement); // Default list
         }catch(SQLException e){
@@ -303,8 +303,8 @@ public class persoList extends javax.swing.JFrame {
         
         if(nameSearchQuery.equals("")){
             try{
-            String sqlQuery = "Select Nom , Prenom , DateNai , DateEmb, FonctionNom , ServiceNom From Employes E, Fonctions F , Services S"
-                    + " Where E.ServiceId = S.ServiceId And E.FonctionId = F.FonctionId AND F.FonctionNom IN ("+FonctionQuery+") And S.ServiceNom IN ("+ServiceQuery+")";
+            String sqlQuery = "Select Nom , Prenom , DateNai , DateEmb, FonctionNom , ServiceNom , Montant   From Employes E, Fonctions F , Services S , Salaires Sal"
+                    + " Where E.ServiceId = S.ServiceId And Sal.EmployeId = E.EmployeId AND E.FonctionId = F.FonctionId AND F.FonctionNom IN ("+FonctionQuery+") And S.ServiceNom IN ("+ServiceQuery+")";
             PreparedStatement myStatement = myconn.prepareStatement(sqlQuery);
             fillEmployeesList(myStatement);
             }catch(SQLException e){
@@ -312,8 +312,8 @@ public class persoList extends javax.swing.JFrame {
             }
         }else{
             try{
-            String sqlQuery = "Select Nom , Prenom , DateNai , DateEmb, FonctionNom , ServiceNom From Employes E, Fonctions F , Services S"
-                    + " Where E.ServiceId = S.ServiceId And E.FonctionId = F.FonctionId AND F.FonctionNom IN ("+FonctionQuery+") And S.ServiceNom IN ("+ServiceQuery+")"
+            String sqlQuery = "Select Nom , Prenom , DateNai , DateEmb, FonctionNom , ServiceNom , Montant From Employes E, Fonctions F , Services S , Salaires Sal"
+                    + " Where E.ServiceId = S.ServiceId And Sal.EmployeId = E.EmployeId AND E.FonctionId = F.FonctionId AND F.FonctionNom IN ("+FonctionQuery+") And S.ServiceNom IN ("+ServiceQuery+")"
                     + "AND (E.Nom LIKE '%"+nameSearchQuery+"%' OR E.Prenom LIKE '%"+nameSearchQuery+"%')";
             PreparedStatement myStatement = myconn.prepareStatement(sqlQuery);
             fillEmployeesList(myStatement);

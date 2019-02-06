@@ -6,6 +6,7 @@
 package GestionPerso;
 
 import java.sql.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -165,7 +166,9 @@ public class funcServAdd extends javax.swing.JFrame {
             PreparedStatement mystat = myconn.prepareStatement(sqlQuery);
             mystat.setString(1, ServiceNom);
             mystat.executeUpdate();
-            System.out.print("okey");
+            //System.out.print("okey");
+            JOptionPane.showMessageDialog(rootPane, "Les Données sont bien ajoutés","OK", JOptionPane.INFORMATION_MESSAGE);
+            initComponents();
         }catch(SQLException e){
             System.err.print(e);
         }
@@ -179,7 +182,11 @@ public class funcServAdd extends javax.swing.JFrame {
             PreparedStatement mystat = myconn.prepareStatement(sqlQuery);
             mystat.setString(1, fonctionNom);
             mystat.executeUpdate();
-            System.out.print("okey");
+            JOptionPane.showMessageDialog(rootPane, "Les Données sont bien ajoutés","OK", JOptionPane.INFORMATION_MESSAGE);
+            
+            jTextField1.setText("");
+            jTextField2.setText("");
+            //System.out.print("okey");
         }catch(SQLException e){
             System.err.print(e);
         }

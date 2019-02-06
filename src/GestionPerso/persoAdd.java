@@ -7,6 +7,7 @@
 package GestionPerso;
 
 import java.sql.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -251,10 +252,17 @@ public class persoAdd extends javax.swing.JFrame {
             PreparedStatement saleryStatement = myconn.prepareStatement(sqlQuerySalery);
             saleryStatement.setFloat(1,salaire);
             saleryStatement.executeUpdate();
-            System.out.print("okey");
+            JOptionPane.showMessageDialog(rootPane, "Les Données sont bien ajoutés","OK", JOptionPane.INFORMATION_MESSAGE);
             
+            //Emptying fields
+            jTextField1.setText("");
+            jTextField2.setText("");
+            jFormattedTextField1.setText("");
+            jFormattedTextField2.setText("");
+            jFormattedTextField3.setText("");
         }catch(SQLException e){
             System.err.print(e);
+            //JOptionPane.showMessageDialog(rootPane, "Veuilez vous verifiez", "Error", JOptionPane.ERROR_MESSAGE);
         }
         
         
