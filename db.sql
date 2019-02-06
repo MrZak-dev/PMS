@@ -43,4 +43,3 @@ CREATE TABLE Admins(
     AdminUserName VARCHAR(25),
     AdminPassword VARCHAR(25)
 );
-

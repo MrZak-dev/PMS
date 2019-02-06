@@ -5,12 +5,9 @@
  */
 package GestionPerso;
 
-import java.awt.List;
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.Vector;
 
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -293,7 +290,7 @@ public class persoList extends javax.swing.JFrame {
         String ServiceQuery;
         if(FonctionSelect.equals("")){
             FonctionQuery = "SELECT FonctionNom FROM Fonctions";
-            System.out.print(FonctionQuery);
+            //System.out.print(FonctionQuery);
         }else{
             FonctionQuery = "'"+FonctionSelect+"'"; 
         }
@@ -324,14 +321,6 @@ public class persoList extends javax.swing.JFrame {
                 System.err.println(e);
             }
         }
-        /*try{
-            String sqlQuery = "Select Nom , Prenom , DateNai , DateEmb, FonctionNom , ServiceNom From Employes , Fonctions , Services"
-                    + " Where Employes.ServiceId = Services.ServiceId And Employes.FonctionId = Fonctions.FonctionId;";
-            PreparedStatement myStatement = myconn.prepareStatement(sqlQuery);
-            
-        }catch(SQLException e){
-            System.err.println(e);
-        }*/
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
