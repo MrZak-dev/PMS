@@ -15,8 +15,8 @@ import javax.swing.JOptionPane;
 public class loginWindow extends javax.swing.JFrame {
     //connection variables 
     private Connection myconn = null;
-    private static final String USERNAME="MrWho";
-    private static final String PASSWORD="MrWho618069";
+    private static final String USERNAME="root";
+    private static final String PASSWORD="";
     private static final String CONN_STRING="jdbc:mysql://localhost:3306/personalMGMT";
     public loginWindow() {
         initComponents();
@@ -72,13 +72,13 @@ public class loginWindow extends javax.swing.JFrame {
 
         jTextField1.setBackground(new java.awt.Color(250, 200, 120));
         jTextField1.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
-        jTextField1.setText("jTextField1");
+        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 3, 0, new java.awt.Color(120, 170, 250)));
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, 130, -1));
 
         jPasswordField1.setBackground(new java.awt.Color(250, 200, 120));
         jPasswordField1.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
-        jPasswordField1.setText("zakzak");
+        jPasswordField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jPasswordField1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 3, 0, new java.awt.Color(120, 170, 250)));
         jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

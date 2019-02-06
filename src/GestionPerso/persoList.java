@@ -20,8 +20,8 @@ import javax.swing.table.DefaultTableModel;
 public class persoList extends javax.swing.JFrame {
     //connection variables 
     private Connection myconn = null;
-    private static final String USERNAME="MrWho";
-    private static final String PASSWORD="MrWho618069";
+    private static final String USERNAME="root";
+    private static final String PASSWORD="";
     private static final String CONN_STRING="jdbc:mysql://localhost:3306/personalMGMT";
     //Connection variables end
     
@@ -39,10 +39,10 @@ public class persoList extends javax.swing.JFrame {
         //MysqlConnection end
         
         //Fonctions ComboBox
-        setFonctionsComboItems();
+        this.setFonctionsComboItems();
         
         //Services ComboBox
-        setServicesComboItems();
+        this.setServicesComboItems();
         
         //Default listing
         try{
@@ -83,15 +83,10 @@ public class persoList extends javax.swing.JFrame {
     
     
     public void fillEmployeesList(PreparedStatement myStatement){
-        //Sql Query and statement
         try{
-            /*String sqlQuery = "Select Nom , Prenom , DateNai , DateEmb, FonctionNom , ServiceNom From Employes , Fonctions , Services"
-                    + " Where Employes.ServiceId = Services.ServiceId And Employes.FonctionId = Fonctions.FonctionId;";
-            PreparedStatement myStatement = myconn.prepareStatement(sqlQuery);*/
             ResultSet myResults = myStatement.executeQuery();
             //jTable2 = new JTable(buildTableModel(myResults));
             jTable2.setModel(buildTableModel(myResults));
-            
         }catch(SQLException e){
             System.err.print(e);
         }   
@@ -152,7 +147,7 @@ public class persoList extends javax.swing.JFrame {
         jComboBox2 = new javax.swing.JComboBox<>();
         jButton4 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
         setSize(new java.awt.Dimension(600, 500));
 
@@ -206,15 +201,17 @@ public class persoList extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setSelectedIndex(-1);
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         jLabel5.setText("Service :");
 
         jLabel4.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         jLabel4.setText("Fonction :");
-
-        jComboBox2.setSelectedIndex(-1);
 
         jButton4.setFont(new java.awt.Font("Noto Sans", 1, 13)); // NOI18N
         jButton4.setText("Chercher");
@@ -340,6 +337,10 @@ public class persoList extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

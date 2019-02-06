@@ -1,28 +1,27 @@
 CREATE TABLE Fonctions(
-    FonctionId int(10) PRIMARY KEY,
+    FonctionId int(10) PRIMARY KEY AUTO_INCREMENT,
     FonctionNom VARCHAR(25)
 );
 
 CREATE TABLE Services(
-    ServiceId INT(10) PRIMARY KEY,
+    ServiceId INT(10) PRIMARY KEY AUTO_INCREMENT,
     ServiceNom VARCHAR(25)
 );
 
 Create TABLE Employes(
-    EmployeId int(10) PRIMARY KEY,
+    EmployeId int(10) PRIMARY KEY AUTO_INCREMENT,
     Nom varchar(25),
     Prenom varchar(25),
     DateNai DATE,
     DateEmb DATE,
     FonctionId int(10),
     ServiceId int(10),
-    CongeId int(10),
     CONSTRAINT emp_fonc FOREIGN KEY (FonctionId) REFERENCES Fonctions(FonctionId),
     CONSTRAINT emp_serv FOREIGN KEY (ServiceId) REFERENCES Services(ServiceId)
 );
 
 CREATE TABLE Conges(
-    CongeId INT(10) PRIMARY KEY,
+    CongeId INT(10) PRIMARY KEY AUTO_INCREMENT,
     DateDeb DATE,
     DateFin DATE,
     EmployeId int(10),
@@ -30,7 +29,7 @@ CREATE TABLE Conges(
 );
 
 CREATE TABLE Salaires(
-    SalaireId INT(10),
+    SalaireId INT(10) PRIMARY KEY AUTO_INCREMENT,
     Montant float,
     EmployeId int(10),
     CONSTRAINT sal_emp FOREIGN KEY (EmployeId) REFERENCES Employes(EmployeId)
